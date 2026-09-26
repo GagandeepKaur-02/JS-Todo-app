@@ -106,15 +106,15 @@ function renderTodo() {
 
         // li.setAttribute("class" , "flex gap-2 border border-slate-300 p-4 rounded-xl")
         // or
-        li.className = "flex gap-2 border border-slate-300 p-4 rounded-xl" // li nu class deke ode vich tailwind CSS properties laa ditiya
+        li.className = "flex gap-2 border border-slate-200/10 p-4 rounded-xl" // li nu class deke ode vich tailwind CSS properties laa ditiya
 
         // li.setAttribute("data-id", todo.id) // this is jugad
         // or
         li.dataset.id = todo.id // this is original method      //  dataset for kisi bhi element ko extra info dene ke liye
 
         li.innerHTML = `
-                    <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class=" accent-pink-500 cursor-pointer" >
-                    <p class="flex-1 ${todo.isCompleted ? "line-through text-slate-400" : ""}">${todo.text}</p>
+                    <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class=" accent-purple-500 cursor-pointer" >
+                    <p class="flex-1 text-purple-400 font-semibold ${todo.isCompleted ? "line-through text-slate-400" : ""}">${todo.text}</p>
                     <div class="flex mt-1">
 
 
@@ -133,8 +133,8 @@ function renderTodo() {
 
                     </div>
                     <div class="flex gap-2">
-                     <button data-action="edit" class="border border-green-500 bg-green-100 text-green-500 px-4 p-1 rounded-sm text-xs   transition-all duration-300 ease-in-out hover:bg-green-500 hover:text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(34,197,94,0.8)]">Edit</button>
-                        <button data-action="delete" class="border border-red-500 bg-red-100 text-red-500 px-4 p-1 rounded-sm text-xs  transition-all duration-300 ease-in-out hover:bg-red-500 hover:text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(239,68,68,0.7)]" >Delete</button>
+                     <button data-action="edit" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-white/[0.04] hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-300 transition-all cursor-pointer">Edit</button>
+                        <button data-action="delete" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-400 transition-all cursor-pointer">Delete</button>
                     </div>`
 
 
