@@ -106,16 +106,19 @@ function renderTodo() {
 
         // li.setAttribute("class" , "flex gap-2 border border-slate-300 p-4 rounded-xl")
         // or
-        li.className = "flex gap-2 border border-slate-200/10 p-4 rounded-xl" // li nu class deke ode vich tailwind CSS properties laa ditiya
+        li.className = "flex items-start gap-3 border border-slate-200/10 p-4 rounded-xl min-w-0" // li nu class deke ode vich tailwind CSS properties laa ditiya
 
         // li.setAttribute("data-id", todo.id) // this is jugad
         // or
         li.dataset.id = todo.id // this is original method      //  dataset for kisi bhi element ko extra info dene ke liye
 
         li.innerHTML = `
-                    <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class=" accent-purple-500 cursor-pointer" >
-                    <p class="flex-1 text-purple-400 font-semibold ${todo.isCompleted ? "line-through text-slate-400" : ""}">${todo.text}</p>
-                    <div class="flex mt-1">
+                    <div class="flex items-start gap-3 min-w-0 flex-1">
+                        <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class="mt-1 shrink-0 accent-purple-500 cursor-pointer" >
+                        <p class="flex-1  break-words min-w-0 pr-1 text-purple-400 font-semibold ${todo.isCompleted ? "line-through text-slate-400" : ""}">${todo.text}</p>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                    <div class="flex items-center">
 
 
                     <!-- Yeh pura div ek clock icon bna diya -->
@@ -130,11 +133,11 @@ function renderTodo() {
                     <span class="absolute w-[5px] h-[2px] bg-slate-400 top-[5px] left-[4px] rounded-full"></span>
                     </div>
 
-
                     </div>
                     <div class="flex gap-2">
                      <button data-action="edit" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-white/[0.04] hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-300 transition-all cursor-pointer">Edit</button>
                         <button data-action="delete" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-400 transition-all cursor-pointer">Delete</button>
+                    </div>
                     </div>`
 
 
