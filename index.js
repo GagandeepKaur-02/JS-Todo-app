@@ -114,30 +114,37 @@ function renderTodo() {
 
         li.innerHTML = `
                     <div class="flex items-start gap-3 min-w-0 flex-1">
-                        <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class="mt-1 shrink-0 accent-purple-500 cursor-pointer" >
+                        <input data-action="toogle" ${todo.isCompleted ? "checked" : ""} type="checkbox" class="mt-2 shrink-0 accent-purple-500 cursor-pointer" >
                         <p class="flex-1  break-words min-w-0 pr-1 text-purple-400 font-semibold ${todo.isCompleted ? "line-through text-slate-400" : ""}">${todo.text}</p>
                     </div>
                     <div class="flex items-center gap-3 shrink-0">
-                    <div class="flex items-center">
+                        <div class="flex items-center">
+                        
+                            <!-- click div -->
+                            <div class="relative group cursor-pointer flex items-center justify-center" onclick="this.querySelector('.my-time-box').classList.toggle('opacity-100'); event.stopPropagation();">
+            
+                                <!-- Time Box -->
+                                <div class="my-time-box absolute bottom-full mb-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 bg-slate-800 border border-white/10 text-white text-[10px] px-2 py-1 rounded shadow-lg whitespace-nowrap transition-opacity duration-200 z-50">
+                                    ${todo.time || 'Just now'}
+                                </div>
 
+                                <!-- Clock Icon -->
+                                <div class="w-3.5 h-3.5 border-2 border-slate-400 rounded-full relative hover:border-slate-300 transition-colors flex items-center justify-center">
+                                    
+                                    <!-- Clock ki choti sui -->
+                                    <span class="absolute w-[2px] h-[4px] bg-slate-400 top-[1px] left-[4px] rounded-full"></span>
+                
+                                    <!-- Clock ki badi sui -->
+                                    <span class="absolute w-[4px] h-[2px] bg-slate-400 top-[4px] left-[4px] rounded-full"></span>
+                                </div>
+            
+                            </div>
 
-                    <!-- Yeh pura div ek clock icon bna diya -->
-                    <div 
-                    title="${todo.time || 'Just now'}" 
-                    class="w-3.5 h-3.5 border-2 border-slate-400 rounded-full relative cursor-pointer hover:border-slate-500 transition-colors flex items-center justify-center">
-
-                    <!-- Clock ki choti sui (Hour hand) -->
-                    <span class="absolute w-[2px] h-[4px] bg-slate-400 top-[2px] left-[4px] rounded-full  "></span>
-
-                    <!-- Clock ki badi sui (Minute hand) -->
-                    <span class="absolute w-[5px] h-[2px] bg-slate-400 top-[5px] left-[4px] rounded-full"></span>
-                    </div>
-
-                    </div>
-                    <div class="flex gap-2">
-                     <button data-action="edit" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-white/[0.04] hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-300 transition-all cursor-pointer">Edit</button>
-                        <button data-action="delete" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-400 transition-all cursor-pointer">Delete</button>
-                    </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button data-action="edit" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-white/[0.04] hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-300 transition-all cursor-pointer">Edit</button>
+                            <button data-action="delete" class="text-[11px] font-600 px-3 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-400 transition-all cursor-pointer">Delete</button>
+                        </div>
                     </div>`
 
 
@@ -163,6 +170,15 @@ function renderTodo() {
 
 renderTodo() // jab first time file execute hogi tab existing todos render ho jayenge
 
+// screen te kite v touch krn te tym nu bnd krn lyi
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('details[open]').forEach(el => {
+        // j clock icon te click na hoye taa tym bnd krd lyi
+        if (!el.contains(e.target)) {
+            el.removeAttribute('open');
+        }
+    });
+});
 
 // DELETE / EDIT---------------------------------------------
 // event delegation
